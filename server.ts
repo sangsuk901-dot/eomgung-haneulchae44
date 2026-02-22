@@ -29,7 +29,7 @@ interface Post {
 // In-memory store for posts
 let posts: Post[] = [
   {
-    id: 'n1',
+    id: '2024052001',
     category: '공지',
     title: '엄궁 1구역 하늘채 분양 정보 게시판 운영 안내',
     author: '분양본부',
@@ -39,7 +39,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'n2',
+    id: '2024052101',
     category: '공지',
     title: '모델하우스 그랜드 오픈 및 방문 예약 안내',
     author: '분양본부',
@@ -49,18 +49,18 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p1',
+    id: '2024052102',
     category: '자유',
     title: '여기 주변 교통 여건이 어떤가요?',
     author: '예비청약자',
     content: '직장이 서면 쪽인데 출퇴근하기에 교통편이 괜찮은지 궁금합니다. 지하철역까지 거리가 어느 정도 될까요?',
     date: '2024.05.21',
     replies: [
-      { id: 'r1', author: '엄궁주민', content: '버스로 이동하면 금방이에요. 나중에 하단-사상선 개통되면 훨씬 좋아질 겁니다.', date: '2024.05.21' }
+      { id: '1716250000001', author: '엄궁주민', content: '버스로 이동하면 금방이에요. 나중에 하단-사상선 개통되면 훨씬 좋아질 겁니다.', date: '2024.05.21' }
     ]
   },
   {
-    id: 'p2',
+    id: '2024052103',
     category: '자유',
     title: '84A 타입 평면도 진짜 잘 뽑았네요',
     author: '인테리어관심',
@@ -69,7 +69,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p3',
+    id: '2024052201',
     category: '자유',
     title: '관심고객 등록 완료! 상품권 기대됩니다 ㅎㅎ',
     author: '행운가득',
@@ -78,7 +78,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p4',
+    id: '2024052202',
     category: '자유',
     title: '엄궁동 학군 정보 공유해주실 분 계신가요?',
     author: '학부모님',
@@ -87,7 +87,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p5',
+    id: '2024052203',
     category: '자유',
     title: '대단지라 관리비는 좀 저렴하겠죠?',
     author: '알뜰살뜰',
@@ -96,7 +96,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p6',
+    id: '2024052301',
     category: '자유',
     title: '하단-사상선 연장 소식 들으셨나요?',
     author: '부동산고수',
@@ -105,7 +105,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p7',
+    id: '2024052302',
     category: '자유',
     title: '숲세권이라 공기는 정말 좋을 것 같아요',
     author: '힐링러버',
@@ -114,7 +114,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p8',
+    id: '2024052303',
     category: '자유',
     title: '분양가 이 정도면 합리적인 수준인가요?',
     author: '고민중',
@@ -123,7 +123,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p9',
+    id: '2024052401',
     category: '자유',
     title: '청약 가점 50점대인데 가능성 있을까요?',
     author: '청약도전',
@@ -132,7 +132,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p10',
+    id: '2024052402',
     category: '자유',
     title: '신혼부부 특별공급 노려보려고 합니다',
     author: '새내기부부',
@@ -141,7 +141,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p11',
+    id: '2024052403',
     category: '자유',
     title: '다자녀 특공 경쟁률 많이 높을까요?',
     author: '다둥이아빠',
@@ -150,7 +150,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p12',
+    id: '2024052501',
     category: '자유',
     title: '엄궁동 재개발 호재가 정말 많네요',
     author: '투자자',
@@ -159,7 +159,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p13',
+    id: '2024052502',
     category: '자유',
     title: '하늘채 브랜드 조경이 예쁘기로 유명하죠',
     author: '조경사랑',
@@ -168,7 +168,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p14',
+    id: '2024052503',
     category: '자유',
     title: '커뮤니티 시설에 수영장도 들어오나요?',
     author: '운동매니아',
@@ -177,7 +177,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p15',
+    id: '2024052601',
     category: '자유',
     title: '주차 공간 넉넉하게 설계되었으면 좋겠어요',
     author: '드라이버',
@@ -186,7 +186,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p16',
+    id: '2024052602',
     category: '자유',
     title: '다들 몇 평형 신청하실 계획인가요?',
     author: '궁금해요',
@@ -195,7 +195,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p17',
+    id: '2024052603',
     category: '자유',
     title: '주변 상권 형성은 잘 되어 있나요?',
     author: '쇼핑왕',
@@ -204,7 +204,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p18',
+    id: '2024052701',
     category: '자유',
     title: '무주택 기간 계산하는 법 좀 알려주세요',
     author: '초보청약',
@@ -213,7 +213,7 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p19',
+    id: '2024052702',
     category: '자유',
     title: '하늘채 특화 설계가 적용된다고 하네요',
     author: '기술자',
@@ -222,14 +222,14 @@ let posts: Post[] = [
     replies: []
   },
   {
-    id: 'p20',
+    id: '2024052703',
     category: '자유',
     title: '청약 일정 나오면 문자 알림 오나요?',
     author: '알림신청',
     content: '관심고객 등록해두면 문자로 일정 보내주는 거죠? 깜빡하고 놓칠까 봐 걱정되네요.',
     date: '2024.05.27',
     replies: [
-      { id: 'r2', author: '분양본부', content: '네, 관심고객으로 등록해주신 분들께는 주요 일정을 문자로 신속하게 안내해 드립니다.', date: '2024.05.27', isAdminPost: true }
+      { id: '1716250000002', author: '분양본부', content: '네, 관심고객으로 등록해주신 분들께는 주요 일정을 문자로 신속하게 안내해 드립니다.', date: '2024.05.27', isAdminPost: true }
     ]
   }
 ];
