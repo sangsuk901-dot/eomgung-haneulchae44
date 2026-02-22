@@ -34,8 +34,8 @@ async function startServer() {
   const server = createServer(app);
   const wss = new WebSocketServer({ server });
 
-  const PORT = 3000;
-
+  const PORT = Number(process.env.PORT) || 3000;
+  
   // WebSocket logic
   wss.on('connection', (ws: WebSocket) => {
     console.log('Client connected');
