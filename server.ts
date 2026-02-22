@@ -253,6 +253,9 @@ async function startServer() {
         const message = JSON.parse(data.toString());
         
         switch (message.type) {
+          case 'GET_INIT':
+            ws.send(JSON.stringify({ type: 'INIT', posts }));
+            break;
           case 'ADD_POST':
             posts = [message.post, ...posts];
             broadcast({ type: 'UPDATE_POSTS', posts });
