@@ -150,8 +150,16 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
     setReplyInput({ ...replyInput, [postId]: { content: '', password: '' } });
   };
 
-  const noticePosts = posts.filter(p => p.category === '공지').sort((a, b) => parseInt(b.id) - parseInt(a.id));
-  const freePosts = posts.filter(p => p.category !== '공지').sort((a, b) => parseInt(b.id) - parseInt(a.id));
+  const noticePosts = posts.filter(p => p.category === '공지').sort((a, b) => {
+    const idA = parseInt(a.id.replace(/[^0-9]/g, '')) || 0;
+    const idB = parseInt(b.id.replace(/[^0-9]/g, '')) || 0;
+    return idB - idA;
+  });
+  const freePosts = posts.filter(p => p.category !== '공지').sort((a, b) => {
+    const idA = parseInt(a.id.replace(/[^0-9]/g, '')) || 0;
+    const idB = parseInt(b.id.replace(/[^0-9]/g, '')) || 0;
+    return idB - idA;
+  });
   const totalPages = Math.max(1, Math.ceil(freePosts.length / postsPerPage));
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
