@@ -33,7 +33,7 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
   const [socket, setSocket] = useState<WebSocket | null>(null);
-  const [newPost, setNewPost] = useState({ title: '', content: '', category: '자유' as '자유' | '공지', password: '' });
+  const [newPost, setNewPost] = useState({ title: '', content: '', category: '자유' as '자유' | '공지', password: '', author: '' });
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 7;
   const [deleteTarget, setDeleteTarget] = useState<{ type: 'post' | 'reply', postId: string, replyId?: string, targetObj: Post | Reply } | null>(null);
@@ -53,6 +53,8 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
       ws.onopen = () => {
         console.log('Connected to Bulletin Board Server');
         setSocket(ws);
+        // 서버에 초기 데이터 요청
+        ws.send(JSON.stringify({ type: 'GET_INIT' }));
       };
 
       ws.onmessage = (event) => {
@@ -89,7 +91,7 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
     e.preventDefault();
     if (!newPost.title.trim() || !newPost.content.trim() || !socket) return;
     setLoading(true);
-    const authorName = isAdmin ? '분양본부' : '방문자';
+    const authorName = isAdmin ? '분양본부' : (newPost.author.trim() || '방문자');
     const postDate = new Date().toLocaleDateString('ko-KR').slice(0, -1);
     const post: Post = {
       id: Date.now().toString(),
@@ -107,7 +109,7 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
     
     setLoading(false);
     setShowWriteModal(false);
-    setNewPost({ title: '', content: '', category: '자유', password: '' });
+    setNewPost({ title: '', content: '', category: '자유', password: '', author: '' });
     setCurrentPage(1);
   };
 
@@ -398,6 +400,26 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
                     ))}
                   </div>
                 )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black text-neutral-400 uppercase tracking-widest ml-1">Author</label>
+                    <input 
+                      type="text" 
+                      required={!isAdmin}
+                      disabled={isAdmin}
+                      value={isAdmin ? '분양본부' : newPost.author} 
+                      onChange={(e) => setNewPost({...newPost, author: e.target.value})} 
+                      className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-xl outline-none focus:border-indigo-500 transition-all font-bold text-neutral-900 disabled:opacity-60" 
+                      placeholder="작성자 이름" 
+                    />
+                  </div>
+                  {!isAdmin && (
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black text-neutral-400 uppercase tracking-widest ml-1">Password</label>
+                      <input type="password" required value={newPost.password} onChange={(e) => setNewPost({...newPost, password: e.target.value})} className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-xl outline-none focus:border-indigo-500 transition-all text-sm" placeholder="삭제용 비밀번호" />
+                    </div>
+                  )}
+                </div>
                 <div className="space-y-1">
                   <label className="text-[10px] font-black text-neutral-400 uppercase tracking-widest ml-1">Title</label>
                   <input type="text" required value={newPost.title} onChange={(e) => setNewPost({...newPost, title: e.target.value})} className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-xl outline-none focus:border-indigo-500 transition-all font-bold text-neutral-900" placeholder="제목" />
@@ -406,12 +428,6 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
                   <label className="text-[10px] font-black text-neutral-400 uppercase tracking-widest ml-1">Content</label>
                   <textarea required rows={5} value={newPost.content} onChange={(e) => setNewPost({...newPost, content: e.target.value})} className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-xl outline-none resize-none focus:border-indigo-500 transition-all text-sm text-neutral-700" placeholder="내용"></textarea>
                 </div>
-                {!isAdmin && (
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-black text-neutral-400 uppercase tracking-widest ml-1">Password</label>
-                    <input type="password" value={newPost.password} onChange={(e) => setNewPost({...newPost, password: e.target.value})} className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-xl outline-none focus:border-indigo-500 transition-all text-sm" placeholder="삭제용 비밀번호" />
-                  </div>
-                )}
                 <button type="submit" disabled={loading} className="w-full py-4.5 md:py-4.5 bg-neutral-900 text-white rounded-xl md:rounded-[1.5rem] font-bold hover:bg-indigo-600 transition-all shadow-xl disabled:opacity-50">
                   {loading ? '등록 중...' : '게시글 등록하기'}
                 </button>
