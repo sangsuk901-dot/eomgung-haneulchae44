@@ -89,7 +89,13 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
 
   const handleWritePost = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newPost.title.trim() || !newPost.content.trim() || !socket) return;
+    if (!newPost.title.trim() || !newPost.content.trim()) return;
+    
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+      alert('서버와 연결이 끊어졌습니다. 페이지를 새로고침하거나 잠시 후 다시 시도해 주세요.');
+      return;
+    }
+
     setLoading(true);
     const authorName = isAdmin ? '분양본부' : (newPost.author.trim() || '방문자');
     const postDate = new Date().toLocaleDateString('ko-KR').slice(0, -1);
@@ -135,7 +141,13 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
 
   const handleWriteReply = (postId: string) => {
     const input = replyInput[postId];
-    if (!input || !input.content.trim() || !socket) return;
+    if (!input || !input.content.trim()) return;
+
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+      alert('서버와 연결이 끊어졌습니다. 잠시 후 다시 시도해 주세요.');
+      return;
+    }
+
     const authorName = isAdmin ? '분양본부' : '방문자';
     const replyDate = new Date().toLocaleDateString('ko-KR').slice(0, -1);
     const newReply: Reply = {
