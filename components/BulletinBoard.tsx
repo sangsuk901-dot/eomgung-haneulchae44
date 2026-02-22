@@ -28,10 +28,213 @@ interface BulletinBoardProps {
   isRegistered: boolean;
 }
 
+const DEFAULT_NOTICES: Post[] = [
+  {
+    id: 'notice-20',
+    category: '공지',
+    title: '[청약Q&A] 당첨 후 계약 체결 시 필요 서류 목록 안내',
+    author: '분양본부',
+    content: '당첨을 축하드립니다! 계약 시에는 신분증, 인감도장, 인감증명서, 주민등록표 등·초본, 가족관계증명서 등이 필요하며, 특별공급의 경우 자격 증빙 서류가 추가됩니다. 상세 목록은 공고문을 확인해 주세요.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-19',
+    category: '공지',
+    title: '[청약Q&A] 모델하우스 방문 예약 및 관람 수칙',
+    author: '분양본부',
+    content: '쾌적한 관람을 위해 사전 예약제로 운영됩니다. 예약하신 시간에 맞춰 방문해 주시고, 내부 사진 촬영은 제한될 수 있으니 양해 부탁드립니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-18',
+    category: '공지',
+    title: '[청약Q&A] 중도금 대출 및 잔금 대출 안내',
+    author: '분양본부',
+    content: '중도금 대출은 통상 분양가의 60% 범위 내에서 가능하며, 개인의 신용도 및 대출 규제에 따라 달라질 수 있습니다. 자세한 사항은 지정 은행을 통해 상담받으실 수 있습니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-17',
+    category: '공지',
+    title: '[청약Q&A] 분양권 전매 절차 및 양도소득세 안내',
+    author: '분양본부',
+    content: '전매 제한 기간이 종료된 후 전매가 가능하며, 양도소득세 신고 의무가 발생합니다. 세율은 보유 기간에 따라 차등 적용되니 세무 전문가와 상의하시기 바랍니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-16',
+    category: '공지',
+    title: '[청약Q&A] 오피스텔/도시형생활주택 청약 시 유의사항',
+    author: '분양본부',
+    content: '오피스텔은 청약 통장이 필요 없으며 재당첨 제한도 적용되지 않습니다. 하지만 주택 수 포함 여부는 취득세 및 양도세 기준에 따라 다를 수 있으니 주의가 필요합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-15',
+    category: '공지',
+    title: '[청약Q&A] 1순위 청약 자격 요건 (당해지역 vs 기타지역)',
+    author: '분양본부',
+    content: '해당 주택건설지역 거주자에게 우선 공급권이 부여됩니다. 거주 기간 요건을 충족해야 당해지역 1순위로 인정되며, 미달 시 기타지역으로 기회가 넘어갑니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-14',
+    category: '공지',
+    title: '[청약Q&A] 예비당첨자 순번 및 추첨 방식 안내',
+    author: '분양본부',
+    content: '부적격 및 계약 포기 물량 발생 시 예비 순번대로 기회가 주어집니다. 예비당첨자 동호수 추첨은 별도의 일정에 따라 진행됩니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-13',
+    category: '공지',
+    title: '[청약Q&A] 부적격 당첨 시 불이익 및 대처 방법',
+    author: '분양본부',
+    content: '부적격 당첨 시 일정 기간(최대 1년) 청약 신청이 제한됩니다. 단순 계산 착오라면 소명 기간 내에 증빙 서류를 제출하여 자격을 입증해야 합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-12',
+    category: '공지',
+    title: '[청약Q&A] 청약 홈 이용 방법 및 인증서 안내',
+    author: '분양본부',
+    content: '청약 신청은 한국부동산원 "청약홈" 홈페이지나 앱을 통해 가능합니다. 공동인증서, 금융인증서 또는 네이버/카카오 등 간편인증서가 반드시 필요합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-11',
+    category: '공지',
+    title: '[청약Q&A] 전매 제한 및 거주 의무 기간 확인',
+    author: '분양본부',
+    content: '본 단지는 분양가 상한제 적용 여부 및 지역 규제에 따라 전매 제한 기간이 설정됩니다. 정확한 기간은 입주자 모집 공고문을 참조해 주세요.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-10',
+    category: '공지',
+    title: '[청약Q&A] 재당첨 제한 기간 확인 방법',
+    author: '분양본부',
+    content: '과거 당첨 이력이 있는 경우 청약홈의 "청약제한사항 확인" 메뉴에서 본인의 재당첨 제한 기간을 조회할 수 있습니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-09',
+    category: '공지',
+    title: '[청약Q&A] 청약 예치금액 기준 (지역별/면적별)',
+    author: '분양본부',
+    content: '입주자 모집 공고일 전일까지 본인 거주지 및 신청 평형에 맞는 예치금이 통장에 입금되어 있어야 합니다. 서울/부산은 85㎡ 이하 기준 300만 원입니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-08',
+    category: '공지',
+    title: '[청약Q&A] 일반공급 가점제와 추첨제 비율 안내',
+    author: '분양본부',
+    content: '전용면적 85㎡ 이하는 가점제 40%, 추첨제 60%로 진행되며(비규제지역 기준), 가점제 낙첨자는 별도 신청 없이 추첨제 대상으로 자동 전환됩니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-07',
+    category: '공지',
+    title: '[청약Q&A] 노부모 부양 특별공급 자격 요건',
+    author: '분양본부',
+    content: '만 65세 이상의 직계존속을 3년 이상 계속하여 부양하고 있는 무주택 세대주여야 합니다. 피부양자와 그 배우자도 모두 무주택이어야 인정됩니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-06',
+    category: '공지',
+    title: '[청약Q&A] 다자녀 특별공급 배점 기준 안내',
+    author: '분양본부',
+    content: '미성년 자녀 수, 영유아 자녀 수, 세대 구성, 무주택 기간, 해당 지역 거주 기간 등을 합산하여 고득점자 순으로 당첨자를 선정합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-05',
+    category: '공지',
+    title: '[청약Q&A] 신혼부부 특별공급 소득 기준',
+    author: '분양본부',
+    content: '전년도 도시근로자 가구당 월평균 소득의 140%(맞벌이 160%) 이하인 세대가 대상입니다. 소득 기준 초과 시 자산 기준을 충족하면 추첨제 물량에 도전 가능합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-04',
+    category: '공지',
+    title: '[청약Q&A] 생애최초 특별공급 자격 요건',
+    author: '분양본부',
+    content: '세대에 속한 모든 구성원이 과거 주택 소유 이력이 없어야 하며, 현재 혼인 중이거나 미혼 자녀가 있어야 합니다. 또한 5년 이상 소득세를 납부한 실적이 필요합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-03',
+    category: '공지',
+    title: '[청약Q&A] 부양가족 수 계산 시 유의사항',
+    author: '분양본부',
+    content: '본인을 제외한 배우자, 직계존속(3년 이상 동일 등본), 직계비속(미혼 자녀)이 포함됩니다. 부모님이 주택을 소유하신 경우 부양가족에서 제외되니 주의하세요.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-02',
+    category: '공지',
+    title: '[청약Q&A] 무주택 기간 산정 기준 안내',
+    author: '분양본부',
+    content: '만 30세가 되는 날부터 산정하며, 30세 이전에 혼인한 경우 혼인신고일부터 계산합니다. 주택을 소유한 적이 있다면 처분 후 무주택자가 된 날부터 다시 계산합니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  },
+  {
+    id: 'notice-01',
+    category: '공지',
+    title: '[청약Q&A] 청약통장 가입 기간 및 납입 횟수 확인 방법',
+    author: '분양본부',
+    content: '가입하신 은행 홈페이지나 앱, 또는 청약홈의 "청약통장 순위확인서 발급" 메뉴에서 정확한 가입일과 납입 인정 횟수를 확인하실 수 있습니다.',
+    date: '2024.05.28',
+    isAdminPost: true,
+    replies: []
+  }
+];
+
 const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) => {
   const [showWriteModal, setShowWriteModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>(DEFAULT_NOTICES);
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [newPost, setNewPost] = useState({ title: '', content: '', category: '자유' as '자유' | '공지', password: '', author: '' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,6 +244,7 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
   const [deleteError, setDeleteError] = useState(false);
   const [replyInput, setReplyInput] = useState<{ [postId: string]: { content: string, password: string } }>({});
   const [expandedPostId, setExpandedPostId] = useState<string | null>(null);
+  const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'disconnected'>('connecting');
 
   useEffect(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -48,11 +252,13 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
     let ws: WebSocket;
 
     const connect = () => {
+      setConnectionStatus('connecting');
       ws = new WebSocket(wsUrl);
 
       ws.onopen = () => {
         console.log('Connected to Bulletin Board Server');
         setSocket(ws);
+        setConnectionStatus('connected');
         // 서버에 초기 데이터 요청
         ws.send(JSON.stringify({ type: 'GET_INIT' }));
       };
@@ -61,7 +267,17 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
         try {
           const data = JSON.parse(event.data);
           if (data.type === 'INIT' || data.type === 'UPDATE_POSTS') {
-            setPosts(data.posts);
+            // 서버 데이터와 기본 공지사항 합치기 (중복 제거)
+            const serverPosts = data.posts as Post[];
+            const mergedPosts = [...serverPosts];
+            
+            DEFAULT_NOTICES.forEach(notice => {
+              if (!mergedPosts.find(p => p.id === notice.id)) {
+                mergedPosts.push(notice);
+              }
+            });
+            
+            setPosts(mergedPosts);
           }
         } catch (e) {
           console.error('Failed to parse socket message', e);
@@ -71,6 +287,7 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
       ws.onclose = () => {
         console.log('Disconnected from server. Retrying...');
         setSocket(null);
+        setConnectionStatus('disconnected');
         setTimeout(connect, 3000);
       };
 
@@ -193,6 +410,16 @@ const BulletinBoard: React.FC<BulletinBoardProps> = ({ isAdmin, isRegistered }) 
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-black tracking-widest uppercase mb-4">
               Community Space
+              <span className="inline-flex items-center gap-1 ml-2 border-l border-indigo-200 pl-2">
+                <span className={`w-1.5 h-1.5 rounded-full ${
+                  connectionStatus === 'connected' ? 'bg-emerald-500 animate-pulse' : 
+                  connectionStatus === 'connecting' ? 'bg-amber-500 animate-bounce' : 'bg-red-500'
+                }`}></span>
+                <span className="opacity-70">
+                  {connectionStatus === 'connected' ? 'LIVE' : 
+                   connectionStatus === 'connecting' ? 'CONNECTING...' : 'OFFLINE'}
+                </span>
+              </span>
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-neutral-900 tracking-tight break-keep">하늘채 정보 공유 게시판</h2>
           </div>
